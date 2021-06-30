@@ -1,29 +1,29 @@
-@mixin media-breakpoint($bk) {
-  @if bk == sm {
+@mixin mq($bk) {
+  @if $bk == sm {
     @media (min-width: 576px) {
       @content;
     }
   }
 
-  @if bk == md {
+  @if $bk == md {
     @media (min-width: 768px) {
       @content;
     }
   }
 
-  @if bk == lg {
+  @if $bk == lg {
     @media (min-width: 992px) {
       @content;
     }
   }
 
-  @if bk == xl {
+  @if $bk == xl {
     @media (min-width: 1200px) {
       @content;
     }
   }
 
-  @if bk == xxl {
+  @if $bk == xxl {
     @media (min-width: 1400px) {
       @content;
     }
