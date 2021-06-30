@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="102px" height="28px" viewBox="0 0 102 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Logo</title>
+    <g id="Logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Logo-Text-" transform="translate(28.000000, 4.000000)" fill="#363837" font-family="Helvetica" font-size="20" font-weight="normal" letter-spacing="0.400000006" line-spacing="20">
+            <text id="Scratch">
+                <tspan x="0" y="19">scratc</tspan>
+                <tspan x="55.7398438" y="19">h</tspan>
+            </text>
+        </g>
+        <g id="Loco-Icon-" transform="translate(0.000000, 1.000000)">
+            <g id="Group">
+                <path d="M14.6571527,23.0000096 C10.57084,26.8365018 4.05927781,26.7259993 0.113171502,22.7531953 L14.9110188,8.86002785 C18.8571251,12.8328319 18.7434654,19.1635173 14.6571527,23.0000096 Z" id="Path" fill="#30BE76"></path>
+                <path d="M17.6846478,3.05342585 L2.88680046,16.9465933 C-1.05930585,12.9737892 -0.945646112,6.6431038 3.14066659,2.80661155 C7.22697929,-1.02988069 13.7385415,-0.919378164 17.6846478,3.05342585 Z" id="Path" fill="#F8B449"></path>
+            </g>
+        </g>
+    </g>
+</svg>
