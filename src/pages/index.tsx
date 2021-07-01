@@ -20,8 +20,8 @@ export default function Home() {
 
       <div className={styles["btns"]}>
         <ButtonContainer>
-          <Button text="Login" />
-          <Button text="Sign Up" style="outline" />
+          <Button text="Login" href="/login" />
+          <Button text="Sign Up" href="/signup" style="outline" />
         </ButtonContainer>
       </div>
 
