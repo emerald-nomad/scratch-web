@@ -35,15 +35,15 @@ h5 {
 }
 
 .text {
-  &__grey {
+  &--grey {
     color: var(--grey);
   }
 
-  &__dark-grey {
+  &--dark-grey {
     color: var(--dark-grey);
   }
 
-  &__light-grey {
+  &--light-grey {
     color: var(--light-grey);
   }
 }

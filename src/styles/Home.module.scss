@@ -1,6 +1,6 @@
 @import "styles/mixins";
 
-.img-container {
+.container {
   height: 100vh;
   width: 100vw;
   background-image: linear-gradient(var(--white) 50%, transparent);
@@ -9,9 +9,8 @@
   z-index: 0;
   padding-top: 2em;
 
-  &__btns {
-    margin-top: 8em;
-    z-index: 1;
+  @include mq(md) {
+    padding: 2em 8em 0;
   }
 
   & div:first-child {
@@ -20,10 +19,46 @@
     img {
       width: 15em;
     }
+
+    @include mq(md) {
+      img {
+        width: 10em;
+      }
+    }
   }
 
   & div:last-child {
     z-index: -1;
     margin-top: auto !important;
   }
+}
+
+.btns {
+  margin-top: 8em;
+  z-index: 1;
+
+  @include mq(md) {
+    margin-top: 0;
+  }
+}
+
+.heading,
+.sub-heading {
+  display: none;
+  text-align: center;
+  line-height: 1.25em;
+
+  @include mq(md) {
+    display: block;
+  }
+}
+
+.heading {
+  margin: 3em 0 1.5em;
+}
+
+.sub-heading {
+  color: var(--grey);
+  padding: 0 4em;
+  margin-bottom: 4em;
 }

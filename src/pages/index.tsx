@@ -6,17 +6,26 @@ import { Button, ButtonContainer } from "components";
 
 export default function Home() {
   return (
-    <div className={styles["img-container"]}>
+    <div className={styles["container"]}>
       <Image src={logo} />
 
-      <div className={styles["img-container__btns"]}>
+      <h1 className={styles.heading}>
+        Join over 50 millions people sharing recipes everyday
+      </h1>
+
+      <p className={styles["sub-heading"]}>
+        Never run out of ideas again. Try new foods, ingredients, cooking style,
+        and more
+      </p>
+
+      <div className={styles["btns"]}>
         <ButtonContainer>
           <Button text="Login" />
           <Button text="Sign Up" style="outline" />
         </ButtonContainer>
       </div>
 
-      <Image layout="responsive" src={introMobile} />
+      <Image layout="responsive" src={introMobile} objectFit="cover" />
     </div>
   );
 }
