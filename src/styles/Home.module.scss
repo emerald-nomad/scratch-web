@@ -9,32 +9,72 @@
   z-index: 0;
   padding-top: 2em;
 
+  @include mq(lg) {
+    padding-top: 0;
+    background-image: linear-gradient(to right, var(--white) 40%, transparent);
+    display: grid;
+    grid-template-columns: 47% 1fr;
+    grid-template-rows: 8em 1fr;
+    grid-template-areas:
+      "logo    image"
+      "content image";
+  }
+
   &__content {
-    margin-top: 11em;
+    margin-top: 9em;
+    grid-area: content;
 
     @include mq(md) {
       margin-top: 0;
       padding: 0 8em;
     }
+
+    @include mq(lg) {
+      padding: 0;
+      padding-left: 5em;
+    }
   }
 
-  & div:first-child {
+  & > div:first-child {
     z-index: 1;
+    grid-area: logo;
 
     img {
-      width: 15em;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      height: auto !important;
+      width: 15em !important;
     }
 
     @include mq(md) {
       img {
-        width: 10em;
+        width: 10em !important;
+      }
+    }
+
+    @include mq(lg) {
+      padding-top: 1em;
+      padding-left: 5em;
+
+      img {
+        width: 6em !important;
+        top: unset !important;
+        bottom: unset !important;
+        left: unset !important;
+        right: unset !important;
       }
     }
   }
 
-  & div:last-child {
+  & > div:last-child {
     z-index: -1;
     margin-top: auto !important;
+    grid-area: image;
+
+    @include mq(lg) {
+      margin-top: 0 !important;
+      height: 100vh;
+    }
   }
 }
 
@@ -55,14 +95,29 @@
   @include mq(md) {
     display: block;
   }
+
+  @include mq(lg) {
+    text-align: left;
+  }
 }
 
 .heading {
   margin: 3em 0 1.5em;
+
+  @include mq(lg) {
+    margin: 0;
+    margin-bottom: 0.4em;
+  }
 }
 
 .sub-heading {
   color: var(--grey);
   padding: 0 4em;
   margin-bottom: 4em;
+
+  @include mq(lg) {
+    padding: 0;
+    margin: 0;
+    font-size: 0.75rem;
+  }
 }
