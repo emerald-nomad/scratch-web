@@ -9,8 +9,13 @@
   z-index: 0;
   padding-top: 2em;
 
-  @include mq(md) {
-    padding: 2em 8em 0;
+  &__content {
+    margin-top: 11em;
+
+    @include mq(md) {
+      margin-top: 0;
+      padding: 0 8em;
+    }
   }
 
   & div:first-child {
@@ -34,7 +39,6 @@
 }
 
 .btns {
-  margin-top: 8em;
   z-index: 1;
 
   @include mq(md) {
