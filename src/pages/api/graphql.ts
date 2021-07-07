@@ -12,6 +12,7 @@ const schema = makeSchema({
 });
 
 const server = new ApolloServer({
+    playground: true,
   schema,
 })
 
