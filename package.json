@@ -4,13 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build:nexus-typegen": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' --transpile-only schema",
+   "build": "npm run build:nexus-typegen && next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "apollo-server-micro": "^2.25.2",
     "graphql": "^15.5.1",
+    "mongoose": "^5.13.2",
     "next": "11.0.1",
     "nexus": "^1.1.0",
     "react": "17.0.2",

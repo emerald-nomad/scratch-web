@@ -1,19 +1,16 @@
-import { makeSchema, queryType } from 'nexus'
 import { ApolloServer } from 'apollo-server-micro'
+import { connect } from "mongoose"
+import { schema, createContext } from '../../graphql'
 
-const Query = queryType({
-  definition(t) {
-    t.string('hello', { resolve: () => 'hello world!' })
-  },
-});
+connect(process.env.MONGO_URL as string, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
 
-const schema = makeSchema({
-  types: [Query],
-});
 
 const server = new ApolloServer({
-    playground: true,
-  schema,
+    schema,
+    context: createContext
 })
 
 export const config = {
