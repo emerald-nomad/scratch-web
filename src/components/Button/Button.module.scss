@@ -1,0 +1,55 @@
+@import "styles/mixins";
+
+.btn-container {
+  display: flex;
+  flex-direction: column;
+  margin: 3em 0;
+
+  @include mq(md) {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  @include mq(lg) {
+    margin: 1.25em 0;
+  }
+}
+
+.btn {
+  cursor: pointer;
+  font-size: 1.25rem;
+  margin: 0 1.5em;
+  border: none;
+  border-radius: 5px;
+  padding: 0.75em 1.5em;
+  flex: 1;
+
+  @include mq(md) {
+    padding: 0.5em 1.5em;
+    margin: 0;
+  }
+
+  @include mq(lg) {
+    font-size: 0.75rem;
+  }
+
+  & + & {
+    margin-top: 1.5em;
+
+    @include mq(md) {
+      margin-top: 0;
+      margin-left: 1.5em;
+    }
+  }
+
+  &--solid {
+    background-color: var(--green);
+    color: var(--white);
+  }
+
+  &--outline {
+    background-color: var(--white);
+    color: var(--green);
+    border: 1px solid var(--green);
+  }
+}

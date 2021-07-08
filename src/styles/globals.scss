@@ -1,0 +1,49 @@
+:root {
+  --green: #30be76;
+  --light-green: rgba(#30be76, 0.2);
+  --red: #f84971;
+  --orange: #f8b449;
+  --black: #030f09;
+  --dark-grey: #767676;
+  --grey: #cccccc;
+  --light-grey: #e6e6e6;
+  --off-white: #f7f8fa;
+  --white: #ffffff;
+
+  box-sizing: border-box;
+  font-size: calc(1vw + 0.6em);
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: var(--black);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: var(--black);
+}
+
+.text {
+  &--grey {
+    color: var(--grey);
+  }
+
+  &--dark-grey {
+    color: var(--dark-grey);
+  }
+
+  &--light-grey {
+    color: var(--light-grey);
+  }
+}
