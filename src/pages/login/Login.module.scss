@@ -1,0 +1,49 @@
+.banner {
+    overflow: hidden;
+    height: 18.5em;
+    border-bottom-right-radius: 10em;
+
+    & > div:first-child {
+        z-index: 1;
+        position: absolute  !important;
+        top: 3.5em;
+        left: 1.75em;
+    }
+
+    & > div:last-child {
+        z-index: -1;
+        position: relative;
+
+        &::after {
+            content: " ";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background-color: var(--white);
+            opacity: .25;
+        }
+
+        img {
+            top: -5em !important;
+        }
+    }
+
+    &__header {
+        position: absolute;
+        margin-left: 1em;
+        top: 4.5em;
+        z-index: 1;
+    }
+
+    &__content {
+        padding: 0 2em;
+    }
+
+    &__message {
+        display: inline-block;
+        color: var(--dark-grey);
+        margin: 1em 0;
+    }
+}
