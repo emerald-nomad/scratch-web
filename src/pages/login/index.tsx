@@ -5,15 +5,15 @@ import * as yup from "yup";
 import { Button, Input } from "components";
 import logo from "../../assets/images/logo.svg";
 import authBanner from "../../assets/images/auth-banner.jpeg";
-import styles from "./Login.module.scss";
+import styles from "styles/Auth.module.scss";
 
 interface LoginFormData {
-  email: string;
+  username: string;
   password: string;
 }
 
 const LoginSchema = yup.object().shape({
-  email: yup.string().email("Invalid email").required("Email is required"),
+  username: yup.string().required("Username is required"),
   password: yup.string().required("Password is required"),
 });
 
@@ -40,11 +40,11 @@ const Login: React.FC = () => {
         <span className={styles["message"]}>Please login to continue.</span>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Input
-            label="Email"
+            label="Username"
             message="Forgot Password"
             control={control}
-            name="email"
-            error={errors.email?.message}
+            name="username"
+            error={errors.username?.message}
           />
 
           <Input
