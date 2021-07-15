@@ -6,11 +6,16 @@ interface InputProps {
   control: Control<any>;
   name: string;
   defaultValue?: string;
-
   message?: string;
+  error?: string;
 }
 
-const Input: React.FC<InputProps> = ({ label, message, ...inputProps }) => {
+const Input: React.FC<InputProps> = ({
+  label,
+  message,
+  error,
+  ...inputProps
+}) => {
   return (
     <div className={styles.container}>
       <div className={styles["container__content"]}>
@@ -22,6 +27,8 @@ const Input: React.FC<InputProps> = ({ label, message, ...inputProps }) => {
         {...inputProps}
         render={({ field }) => <input {...field} />}
       />
+
+      <p>{error}</p>
     </div>
   );
 };

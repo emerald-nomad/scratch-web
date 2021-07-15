@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { Button, Input } from "components";
 import logo from "../../assets/images/logo.svg";
 import authBanner from "../../assets/images/auth-banner.jpeg";
@@ -10,12 +12,17 @@ interface LoginFormData {
   password: string;
 }
 
+const LoginSchema = yup.object().shape({
+  email: yup.string().email("Invalid email").required("Email is required"),
+  password: yup.string().required("Password is required"),
+});
+
 const Login: React.FC = () => {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormData>();
+  } = useForm<LoginFormData>({ resolver: yupResolver(LoginSchema) });
 
   const onSubmit = (data: LoginFormData) => {
     console.log(data);
@@ -31,17 +38,23 @@ const Login: React.FC = () => {
 
       <section className={styles["content"]}>
         <span className={styles["message"]}>Please login to continue.</span>
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Input
             label="Email"
             message="Forgot Password"
             control={control}
             name="email"
+            error={errors.email?.message}
           />
 
-          <Input label="Password" control={control} name="password" />
+          <Input
+            label="Password"
+            control={control}
+            name="password"
+            error={errors.password?.message}
+          />
 
-          <Button text="Login" onClick={handleSubmit(onSubmit)} />
+          <Button text="Login" type="submit" />
         </form>
       </section>
     </div>
