@@ -56,6 +56,11 @@ const Login: React.FC = () => {
 
           <Button text="Login" type="submit" />
         </form>
+
+        <div>
+          <p>New to Scratch?</p>
+          <Button text="Sign Up!" style="text" href="/signup" />
+        </div>
       </section>
     </div>
   );
