@@ -34,9 +34,10 @@ const SignUp: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.banner}>
         <Image src={logo} alt="Logo" />
-        <h1 className={styles["banner__header"]}>
+        <h1 className={styles["banner__header-1"]}>
           Start <br /> from Scratch!
         </h1>
+        <h1 className={styles["banner__header-2"]}>Start from Scratch!</h1>
         <Image src={authBanner} alt="" />
       </div>
 

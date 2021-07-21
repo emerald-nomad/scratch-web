@@ -1,3 +1,5 @@
+@import "styles/mixins";
+
 .container {
   form {
     display: flex;
@@ -9,6 +11,17 @@
     margin-left: 0;
     margin-right: 0;
   }
+
+  @include mq(md) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .banner {
@@ -16,16 +29,41 @@
   height: 18.5em;
   border-bottom-right-radius: 10em;
 
+  @include mq(md) {
+    position: absolute;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 0;
+  }
+
   & > div:first-child {
     z-index: 1;
     position: absolute !important;
     top: 3.5em;
     left: 1.75em;
+
+    @include mq(md) {
+      top: 3em;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 
   & > div:last-child {
     z-index: -1;
     position: relative;
+
+    @include mq(md) {
+      position: absolute;
+      height: 100vh;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
 
     &::after {
       content: " ";
@@ -36,23 +74,69 @@
       left: 0;
       background-color: var(--white);
       opacity: 0.25;
+
+      @include mq(md) {
+        opacity: 0.5;
+      }
     }
 
     img {
       top: -5em !important;
+
+      @include mq(md) {
+        top: 0 !important;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+      }
     }
   }
 
   &__header {
-    position: absolute;
-    margin-left: 1em;
-    top: 4.5em;
-    z-index: 1;
+    &,
+    &-1,
+    &-2 {
+      position: absolute;
+      margin-left: 1em;
+      top: 4.5em;
+      z-index: 1;
+    }
+
+    &-2 {
+      display: none;
+    }
+
+    @include mq(md) {
+      &,
+      &-1,
+      &-2 {
+        margin: 0;
+        top: 3.5em;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      &-1 {
+        display: none;
+      }
+
+      &-2 {
+        display: block;
+      }
+    }
   }
 }
 
 .content {
   padding: 0 2em;
+
+  @include mq(md) {
+    padding: 2em 3em;
+    background-color: var(--white);
+    width: 30em;
+    border-radius: 10px;
+    box-shadow: 0 0 10em -3em var(--black);
+  }
 
   & div:last-child {
     display: flex;
