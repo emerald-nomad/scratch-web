@@ -5,11 +5,19 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 2em;
+
+    @include mq(lg) {
+      margin-bottom: 0.6em;
+    }
   }
 
   button {
     margin-left: 0;
     margin-right: 0;
+
+    @include mq(lg) {
+      margin-top: 0.5em;
+    }
   }
 
   @include mq(md) {
@@ -39,6 +47,10 @@
     border-radius: 0;
   }
 
+  @include mq(lg) {
+    left: 40%;
+  }
+
   & > div:first-child {
     z-index: 1;
     position: absolute !important;
@@ -49,6 +61,10 @@
       top: 3em;
       left: 50%;
       transform: translateX(-50%);
+    }
+
+    @include mq(lg) {
+      display: none !important;
     }
   }
 
@@ -77,6 +93,16 @@
 
       @include mq(md) {
         opacity: 0.5;
+      }
+
+      @include mq(lg) {
+        opacity: 1;
+        background-color: transparent;
+        background-image: linear-gradient(
+          to right,
+          var(--white) 10%,
+          transparent
+        );
       }
     }
 
@@ -124,6 +150,14 @@
         display: block;
       }
     }
+
+    @include mq(lg) {
+      &,
+      &-1,
+      &-2 {
+        display: none;
+      }
+    }
   }
 }
 
@@ -138,11 +172,86 @@
     box-shadow: 0 0 10em -3em var(--black);
   }
 
+  @include mq(lg) {
+    position: relative;
+    height: 22em;
+    width: 42em;
+    padding: 1em 3em;
+    padding-left: 21em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__heading {
+    display: none;
+    font-size: 1.1rem;
+
+    @include mq(lg) {
+      display: block;
+    }
+  }
+
+  &__background {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 50%;
+
+    @include mq(lg) {
+      display: block;
+    }
+
+    & > div:first-child {
+      position: relative;
+      height: 100%;
+      width: 100%;
+
+      img {
+        left: -10em !important;
+        object-fit: cover !important;
+      }
+    }
+
+    & div:last-child {
+      position: absolute !important;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 5;
+      display: flex !important;
+
+      img {
+        min-width: 0 !important;
+        max-width: none !important;
+        width: 13em !important;
+      }
+    }
+
+    &::after {
+      content: " ";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      background-color: var(--white);
+      opacity: 0.75;
+    }
+  }
+
   & div:last-child {
     display: flex;
     flex-direction: column;
     align-items: center;
     color: var(--grey);
+
+    @include mq(lg) {
+      font-size: 0.75rem;
+    }
   }
 }
 
@@ -150,4 +259,9 @@
   display: inline-block;
   color: var(--dark-grey);
   margin: 1em 0 2.5em;
+
+  @include mq(lg) {
+    font-size: 0.9rem;
+    margin-bottom: 1em;
+  }
 }

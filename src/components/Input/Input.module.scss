@@ -1,3 +1,5 @@
+@import "styles/mixins";
+
 .container {
   display: flex;
   flex-direction: column;
@@ -8,6 +10,11 @@
     font-size: 1.15rem;
     margin-bottom: 1.25em;
     color: var(--dark-grey);
+
+    @include mq(lg) {
+      font-size: 0.75rem;
+      margin-bottom: 0.75em;
+    }
   }
 
   label {
@@ -25,5 +32,10 @@
   p {
     margin-bottom: 3em;
     color: var(--red);
+
+    @include mq(lg) {
+      margin-bottom: 1em;
+      font-size: 0.5rem;
+    }
   }
 }
