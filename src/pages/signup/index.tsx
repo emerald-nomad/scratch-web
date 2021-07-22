@@ -62,6 +62,7 @@ const SignUp: React.FC = () => {
             control={control}
             name="password"
             error={errors.password?.message}
+            type="password"
           />
 
           <Input
@@ -69,6 +70,7 @@ const SignUp: React.FC = () => {
             control={control}
             name="confirmPassword"
             error={errors.confirmPassword?.message}
+            type="password"
           />
 
           <Button text="Sign Up" type="submit" />

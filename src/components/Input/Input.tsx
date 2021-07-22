@@ -8,12 +8,14 @@ interface InputProps {
   defaultValue?: string;
   message?: string;
   error?: string;
+  type?: string
 }
 
 const Input: React.FC<InputProps> = ({
   label,
   message,
   error,
+  type = 'text',
   ...inputProps
 }) => {
   return (
@@ -25,7 +27,7 @@ const Input: React.FC<InputProps> = ({
 
       <Controller
         {...inputProps}
-        render={({ field }) => <input {...field} />}
+        render={({ field }) => <input {...field} type={type} />}
       />
 
       <p>{error}</p>
