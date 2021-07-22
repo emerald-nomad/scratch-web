@@ -8,16 +8,16 @@
 
     @include mq(lg) {
       margin-bottom: 0.6em;
+
+      button {
+        margin-top: 0.5em;
+      }
     }
   }
 
   button {
     margin-left: 0;
     margin-right: 0;
-
-    @include mq(lg) {
-      margin-top: 0.5em;
-    }
   }
 
   @include mq(md) {
