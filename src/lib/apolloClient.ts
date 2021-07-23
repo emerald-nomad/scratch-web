@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import {ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject} from "@apollo/client"
-import {concatPagination} from "@apollo/client/utilities"
 import merge from "deepmerge"
 import isEqual from 'lodash/isEqual'
 
@@ -11,7 +10,7 @@ let apolloClient: ApolloClient<NormalizedCacheObject>;
 const createApolloClient = () => new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
-        uri: 'https://nextjs-graphql-with-prisma-simple.vercel.app/api',
+        uri: process.env.API_URL,
         credentials: 'same-origin'
     }),
     cache: new InMemoryCache()
