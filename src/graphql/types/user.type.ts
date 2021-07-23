@@ -2,7 +2,6 @@ import {
   objectType,
   extendType,
   nonNull,
-  stringArg,
   inputObjectType,
   arg,
 } from "nexus";
@@ -15,8 +14,8 @@ import {
   REMOVE_USER_ERROR_CODE,
   RemoveUserError,
 } from "graphql/errors";
+import { APP_SECRET } from "graphql/utils";
 
-const APP_SECRET = process.env.APP_SECRET as string;
 
 const createToken = async (userId: string) => {
   const token = await sign({ userId }, APP_SECRET);
@@ -72,6 +71,7 @@ export const UserQuery = extendType({
   definition(t) {
     t.nonNull.list.field("users", {
       type: "User",
+      authorize: (_, args, {req, Auth}) => Auth.isDeveloper(req),
       async resolve(_, args, { User }) {
         return User.findAll();
       },
@@ -129,6 +129,7 @@ export const UserMutaion = extendType({
 
     t.nonNull.field("removeUser", {
       type: "Boolean",
+      authorize: (_, args, {req, Auth}) => Auth.isDeveloper(req),
       args: {
         input: nonNull(arg({ type: "RemoveUserInput" })),
       },
