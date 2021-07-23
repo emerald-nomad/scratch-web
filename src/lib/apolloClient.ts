@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import {ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject} from "@apollo/client"
 import merge from "deepmerge"
 import isEqual from 'lodash/isEqual'
+import { API_URL } from "lib";
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
 
@@ -10,7 +11,7 @@ let apolloClient: ApolloClient<NormalizedCacheObject>;
 const createApolloClient = () => new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
-        uri: process.env.API_URL,
+        uri: API_URL,
         credentials: 'same-origin'
     }),
     cache: new InMemoryCache()

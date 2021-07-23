@@ -1,7 +1,7 @@
 import { Request } from 'express';
 import { verify } from 'jsonwebtoken';
-import { APP_SECRET } from 'graphql/utils';
 import { User } from 'graphql/db';
+import { APP_SECRET } from 'lib';
 
 export interface AuthRepository {
     isAuthenticated: (req: Request) => Promise<boolean>
@@ -53,4 +53,10 @@ export const authRepository: AuthRepository = {
 
         return true
     }
+}
+
+export const mockAuthRepository: AuthRepository = {
+    isAuthenticated: async () => false,
+
+    isDeveloper: async () => false
 }
