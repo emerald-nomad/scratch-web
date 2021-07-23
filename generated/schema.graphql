@@ -3,11 +3,15 @@
 
 
 type AuthPayload {
+  """JWT token for authenticating future requests"""
   token: String!
+
+  """Object containing requested user data"""
   user: User!
 }
 
 type Mutation {
+  removeUser(input: RemoveUserInput!): Boolean!
   signup(input: SignUpInput!): AuthPayload!
 }
 
@@ -17,9 +21,17 @@ type Query {
   users: [User]!
 }
 
+input RemoveUserInput {
+  """Username for user to be deleted"""
+  username: String!
+}
+
 input SignUpInput {
   """Confirm password for new user"""
   confirmPassword: String!
+
+  """Name for new user"""
+  name: String!
 
   """Password for new user"""
   password: String!
@@ -29,8 +41,11 @@ input SignUpInput {
 }
 
 type User {
-  """Unique identification"""
+  """Unique identification for user"""
   id: ID!
+
+  """User's name"""
+  name: String!
 
   """Username for user"""
   username: String!

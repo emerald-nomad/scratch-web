@@ -1,17 +1,24 @@
-import { compare, hash } from 'bcryptjs'
-import { IUser, User} from "../db"
+import { compare, hash } from "bcryptjs";
+import { IUser, User } from "../db";
 
 export interface UserRepository {
-    findAll: () => Promise<IUser[]>
-    findByUsername: (username: string) => Promise<IUser | null>
-    create: (args: {username: string, password: string}) => Promise<IUser>
+  findAll: () => Promise<IUser[]>;
+  findByUsername: (username: string) => Promise<IUser | null>;
+  create: (args: {
+    name: string;
+    username: string;
+    password: string;
+  }) => Promise<IUser>;
+  delete: (username: string) => Promise<boolean>;
 }
 
 export const userRepository: UserRepository = {
-    findAll: async () => await User.find(),
+  findAll: async () => await User.find(),
 
-    findByUsername: async (username) => await User.findOne({username}),
+  findByUsername: async (username) => await User.findOne({ username }),
 
-    create: async ({username, password}) => await User.create({username, password})
-    
-}
+  create: async ({ name, username, password }) =>
+    await User.create({ name, username, password }),
+
+  delete: async (username) => !!(await User.deleteOne({ username })).ok,
+};
