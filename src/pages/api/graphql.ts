@@ -10,7 +10,13 @@ connect(process.env.MONGO_URL as string, {
 
 const server = new ApolloServer({
     schema,
-    context: createContext
+    context: createContext,
+    formatError: (err) => {
+        // @ts-ignore
+        const { code, exception, ...data } = err.extensions;
+
+        return { message: err.message, code, data }
+    }
 })
 
 export const config = {
