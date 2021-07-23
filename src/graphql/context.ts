@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
-import { apiRepository, ApiRepository } from './repositories';
+import { userRepository, UserRepository } from './repositories';
 
 export interface Context {
   req: Request;
   res: Response;
-  apiRepository: ApiRepository
+  User: UserRepository
 }
 
 export const createContext = (ctx: any) => ({
   ...ctx,
-  apiRepository
+  User: userRepository
 })

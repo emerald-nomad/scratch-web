@@ -1,2 +1,2 @@
 export * from "./Hello"
-export * from "./User"
+export * from "./user.type"

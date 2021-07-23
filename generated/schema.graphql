@@ -2,14 +2,36 @@
 ### Do not make changes to this file directly
 
 
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type Mutation {
+  signup(input: SignUpInput!): AuthPayload!
+}
+
 type Query {
   goodbye: String
   hello: String
   users: [User]!
 }
 
+input SignUpInput {
+  """Confirm password for new user"""
+  confirmPassword: String!
+
+  """Password for new user"""
+  password: String!
+
+  """Username for new user"""
+  username: String!
+}
+
 type User {
-  email: String
-  id: ID
-  name: String
+  """Unique identification"""
+  id: ID!
+
+  """Username for user"""
+  username: String!
 }

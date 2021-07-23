@@ -14,6 +14,11 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  SignUpInput: { // input type
+    confirmPassword: string; // String!
+    password: string; // String!
+    username: string; // String!
+  }
 }
 
 export interface NexusGenEnums {
@@ -28,11 +33,15 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  AuthPayload: { // root type
+    token: string; // String!
+    user: NexusGenRootTypes['User']; // User!
+  }
+  Mutation: {};
   Query: {};
   User: { // root type
-    email?: string | null; // String
-    id?: string | null; // ID
-    name?: string | null; // String
+    id: string; // ID!
+    username: string; // String!
   }
 }
 
@@ -47,32 +56,49 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  AuthPayload: { // field return type
+    token: string; // String!
+    user: NexusGenRootTypes['User']; // User!
+  }
+  Mutation: { // field return type
+    signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
+  }
   Query: { // field return type
     goodbye: string | null; // String
     hello: string | null; // String
     users: Array<NexusGenRootTypes['User'] | null>; // [User]!
   }
   User: { // field return type
-    email: string | null; // String
-    id: string | null; // ID
-    name: string | null; // String
+    id: string; // ID!
+    username: string; // String!
   }
 }
 
 export interface NexusGenFieldTypeNames {
+  AuthPayload: { // field return type name
+    token: 'String'
+    user: 'User'
+  }
+  Mutation: { // field return type name
+    signup: 'AuthPayload'
+  }
   Query: { // field return type name
     goodbye: 'String'
     hello: 'String'
     users: 'User'
   }
   User: { // field return type name
-    email: 'String'
     id: 'ID'
-    name: 'String'
+    username: 'String'
   }
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    signup: { // args
+      input: NexusGenInputs['SignUpInput']; // SignUpInput!
+    }
+  }
 }
 
 export interface NexusGenAbstractTypeMembers {
@@ -83,7 +109,7 @@ export interface NexusGenTypeInterfaces {
 
 export type NexusGenObjectNames = keyof NexusGenObjects;
 
-export type NexusGenInputNames = never;
+export type NexusGenInputNames = keyof NexusGenInputs;
 
 export type NexusGenEnumNames = never;
 
