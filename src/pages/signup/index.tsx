@@ -1,8 +1,7 @@
-import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Button, Input } from "components";
+import { Button, Input, ScratchImage } from "components";
 import logo from "../../assets/images/logo.svg";
 import logoNoText from "../../assets/images/logo-no-text.svg";
 import authBanner from "../../assets/images/auth-banner.jpeg";
@@ -34,18 +33,18 @@ const SignUp: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.banner}>
-        <Image src={logo} alt="Logo" />
+        <ScratchImage src={logo} alt="Logo" />
         <h1 className={styles["banner__header-1"]}>
           Start <br /> from Scratch!
         </h1>
         <h1 className={styles["banner__header-2"]}>Start from Scratch!</h1>
-        <Image src={authBanner} alt="" />
+        <ScratchImage src={authBanner} alt="" />
       </div>
 
       <section className={styles["content"]}>
         <div className={styles["content__background"]}>
-          <Image src={logoNoText} alt="Logo without text" />
-          <Image src={logo} alt="Logo" />
+          <ScratchImage src={logoNoText} alt="Logo without text" />
+          <ScratchImage src={logo} alt="Logo" />
         </div>
         <h1 className={styles["content__heading"]}>Start from Scratch</h1>
         <span className={styles["message"]}>Create account to continue.</span>

@@ -1,8 +1,7 @@
-import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Button, Input } from "components";
+import { Button, Input, ScratchImage } from "components";
 import logo from "../../assets/images/logo.svg";
 import logoNoText from "../../assets/images/logo-no-text.svg";
 import authBanner from "../../assets/images/auth-banner.jpeg";
@@ -31,16 +30,16 @@ const Login: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.banner}>
-        <Image src={logo} alt="Logo" />
+      <div className={styles.banner} aria-label="Banner">
+        <ScratchImage src={logo} alt="Logo" />
         <h1 className={styles["banner__header"]}>Welcome Back!</h1>
-        <Image src={authBanner} alt="" />
+        <ScratchImage src={authBanner} alt="Banner Image" />
       </div>
 
       <section className={styles["content"]}>
         <div className={styles["content__background"]}>
-          <Image src={logoNoText} alt="Logo without text" />
-          <Image src={logo} alt="Logo" />
+          <ScratchImage src={logoNoText} alt="Logo without text" />
+          <ScratchImage src={logo} alt="Logo" />
         </div>
         <h1 className={styles["content__heading"]}>Welcome Back!</h1>
         <span className={styles["message"]}>Please login to continue.</span>

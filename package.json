@@ -7,7 +7,8 @@
     "build:nexus-typegen": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' --transpile-only src/graphql/schema",
     "build": "npm run build:nexus-typegen && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
@@ -28,13 +29,28 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
     "@types/bcryptjs": "^2.4.2",
     "@types/jsonwebtoken": "^8.5.4",
     "@types/node": "^16.0.1",
     "@types/react": "^17.0.14",
+    "babel-jest": "^27.0.6",
     "eslint": "7.29.0",
     "eslint-config-next": "11.0.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.0.6",
     "ts-node": "^10.0.0",
     "typescript": "4.3.4"
+  },
+  "jest": {
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less|scss)$": "identity-obj-proxy"
+    }
   }
 }
