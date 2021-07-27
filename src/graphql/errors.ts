@@ -16,6 +16,10 @@ export const SIGNUP_ERROR_CODE = "SIGNUP_ERROR_CODE";
 export const SignUpError = (errors: ErrorData) =>
   new ApolloError("SignUp Error", SIGNUP_ERROR_CODE, errors);
 
+export const LOGIN_ERROR_CODE = "LOGIN_ERROR_CODE";
+export const LoginError = (errors: ErrorData) =>
+  new ApolloError("Login Error", LOGIN_ERROR_CODE, errors);
+
 export const REMOVE_USER_ERROR_CODE = "REMOVE_USER_ERROR_CODE";
 export const RemoveUserError = (errors: ErrorData) =>
   new ApolloError("Remove User Error", REMOVE_USER_ERROR_CODE, errors);

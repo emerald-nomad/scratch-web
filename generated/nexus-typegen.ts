@@ -15,6 +15,10 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  LoginInput: { // input type
+    password: string; // String!
+    username: string; // String!
+  }
   RemoveUserInput: { // input type
     username: string; // String!
   }
@@ -67,6 +71,7 @@ export interface NexusGenFieldTypes {
     user: NexusGenRootTypes['User']; // User!
   }
   Mutation: { // field return type
+    login: NexusGenRootTypes['AuthPayload']; // AuthPayload!
     removeUser: boolean; // Boolean!
     signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
   }
@@ -88,6 +93,7 @@ export interface NexusGenFieldTypeNames {
     user: 'User'
   }
   Mutation: { // field return type name
+    login: 'AuthPayload'
     removeUser: 'Boolean'
     signup: 'AuthPayload'
   }
@@ -105,6 +111,9 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    login: { // args
+      input: NexusGenInputs['LoginInput']; // LoginInput!
+    }
     removeUser: { // args
       input: NexusGenInputs['RemoveUserInput']; // RemoveUserInput!
     }

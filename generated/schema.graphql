@@ -10,7 +10,16 @@ type AuthPayload {
   user: User!
 }
 
+input LoginInput {
+  """Password for user trying to log in"""
+  password: String!
+
+  """Username for user trying to login"""
+  username: String!
+}
+
 type Mutation {
+  login(input: LoginInput!): AuthPayload!
   removeUser(input: RemoveUserInput!): Boolean!
   signup(input: SignUpInput!): AuthPayload!
 }

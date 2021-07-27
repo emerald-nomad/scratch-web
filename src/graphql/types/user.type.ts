@@ -1,21 +1,16 @@
-import {
-  objectType,
-  extendType,
-  nonNull,
-  inputObjectType,
-  arg,
-} from "nexus";
+import { objectType, extendType, nonNull, inputObjectType, arg } from "nexus";
 import { compare, hash } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import {
   SignUpError,
   SIGNUP_ERROR_CODE,
+  LoginError,
+  LOGIN_ERROR_CODE,
   ServerError,
   REMOVE_USER_ERROR_CODE,
   RemoveUserError,
 } from "graphql/errors";
-import { APP_SECRET } from "graphql/utils";
-
+import { APP_SECRET } from "lib";
 
 const createToken = async (userId: string) => {
   const token = await sign({ userId }, APP_SECRET);
@@ -40,6 +35,18 @@ export const SignUpInput = inputObjectType({
     t.nonNull.string("password", { description: "Password for new user" });
     t.nonNull.string("confirmPassword", {
       description: "Confirm password for new user",
+    });
+  },
+});
+
+export const LoginInput = inputObjectType({
+  name: "LoginInput",
+  definition(t) {
+    t.nonNull.string("username", {
+      description: "Username for user trying to login",
+    });
+    t.nonNull.string("password", {
+      description: "Password for user trying to log in",
     });
   },
 });
@@ -71,7 +78,7 @@ export const UserQuery = extendType({
   definition(t) {
     t.nonNull.list.field("users", {
       type: "User",
-      authorize: (_, args, {req, Auth}) => Auth.isDeveloper(req),
+      authorize: (_, args, { req, Auth }) => Auth.isDeveloper(req),
       async resolve(_, args, { User }) {
         return User.findAll();
       },
@@ -95,13 +102,15 @@ export const UserMutaion = extendType({
         try {
           const existingUser = await User.findByUsername(username);
 
-          if (existingUser)
+          if (existingUser) {
             throw SignUpError({ username: "Username already in use" });
+          }
 
-          if (password !== confirmPassword)
+          if (password !== confirmPassword) {
             throw SignUpError({
               confirmPassword: "Password fields do not match",
             });
+          }
 
           const hashedPassword = await hash(password, 10);
 
@@ -127,9 +136,51 @@ export const UserMutaion = extendType({
       },
     });
 
+    t.nonNull.field("login", {
+      type: "AuthPayload",
+      args: {
+        input: nonNull(arg({ type: "LoginInput" })),
+      },
+      async resolve(_, { input: { username, password } }, { User }) {
+        try {
+          const user = await User.findByUsername(username);
+
+          if (!user) {
+            throw LoginError({
+              password: "Invalid username/password combination",
+            });
+          }
+
+          const validPassword = await compare(password, user.password);
+
+          if (!validPassword) {
+            throw LoginError({
+              password: "Invalid username/password combination",
+            });
+          }
+
+          const token = createToken(user.id);
+
+          return {
+            token,
+            user,
+          };
+        } catch (error) {
+          const { code } = error.extensions;
+
+          if (code === LOGIN_ERROR_CODE) {
+            throw error;
+          } else {
+            console.error(error);
+            throw ServerError();
+          }
+        }
+      },
+    });
+
     t.nonNull.field("removeUser", {
       type: "Boolean",
-      authorize: (_, args, {req, Auth}) => Auth.isDeveloper(req),
+      authorize: (_, args, { req, Auth }) => Auth.isDeveloper(req),
       args: {
         input: nonNull(arg({ type: "RemoveUserInput" })),
       },

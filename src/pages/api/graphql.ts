@@ -1,8 +1,9 @@
 import { ApolloServer } from 'apollo-server-micro'
+import { MONGO_URL } from 'lib';
 import { connect } from "mongoose"
 import { schema, createContext } from '../../graphql'
 
-connect(process.env.MONGO_URL as string, {
+connect(MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true
     });
