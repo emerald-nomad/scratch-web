@@ -5,7 +5,7 @@
 import React from "react";
 import userEvent from "@testing-library/user-event";
 import Login, { LOGIN_USER } from "pages/login";
-import { cleanup, render, screen, act, waitFor } from "lib";
+import { cleanup, render, screen, act, waitFor, within } from "lib";
 
 const testPassword = "12345";
 const failingUsername = "Error";
@@ -46,6 +46,22 @@ const mocks = [
   },
 ];
 
+const typeInUserData = ({
+  username = passingUsername,
+  password = testPassword,
+}) => {
+  const submitBtn = screen.getByText("Login");
+  const usernameInput = screen.getByLabelText("Username input");
+  const passwordInput = screen.getByLabelText("Password input");
+
+  userEvent.type(usernameInput, username);
+  userEvent.type(passwordInput, password);
+
+  act(() => {
+    userEvent.click(submitBtn);
+  });
+};
+
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
 describe("Login Page", () => {
@@ -69,18 +85,31 @@ describe("Login Page", () => {
 
   it("should have login form", async () => {
     const loginForm = await screen.getByLabelText("Login Form");
+    const withinLoginForm = within(loginForm);
+
+    expect(withinLoginForm.getByLabelText("Username input"));
+    expect(withinLoginForm.getByLabelText("Password input"));
 
     expect(loginForm).toMatchSnapshot();
   });
 
   it("should have banner section", async () => {
     const banner = await screen.getByLabelText("Banner");
+    const withinBanner = within(banner);
+
+    expect(withinBanner.getByLabelText("Banner Header"));
+    expect(withinBanner.getByAltText("Logo"));
+    expect(withinBanner.getByAltText("Banner Image"));
 
     expect(banner).toMatchSnapshot();
   });
 
   it("should have a link to signup page", async () => {
     const signupLink = await screen.getByLabelText("Sign Up Link");
+    const withinSignUpLink = within(signupLink);
+
+    withinSignUpLink.getByText("New to Scratch?");
+    withinSignUpLink.getByLabelText("Link to Sign Up");
 
     expect(signupLink).toMatchSnapshot();
   });
@@ -98,32 +127,13 @@ describe("Login Page", () => {
   });
 
   it("should display error for bad username/password combination", async () => {
-    const submitBtn = screen.getByText("Login");
-    const usernameInput = screen.getByLabelText("Username input");
-    const passwordInput = screen.getByLabelText("Password input");
-
-    userEvent.type(usernameInput, failingUsername);
-    userEvent.type(passwordInput, testPassword);
-
-    act(() => {
-      userEvent.click(submitBtn);
-    });
+    typeInUserData({ username: failingUsername });
 
     expect(await screen.findByText("Invalid username/password combination"));
   });
 
-  it("should redirect to 'feed' page on successful login", async () => {
-    const submitBtn = screen.getByText("Login");
-    const usernameInput = screen.getByLabelText("Username input");
-    const passwordInput = screen.getByLabelText("Password input");
-
-    userEvent.type(usernameInput, passingUsername);
-    userEvent.type(passwordInput, testPassword);
-
-    act(() => {
-      userEvent.click(submitBtn);
-    });
-
+  it("should redirect to '/feed' page on successful login", async () => {
+    typeInUserData({});
     await waitFor(() => expect(router.push).toHaveBeenCalledWith("/feed"));
   });
 });

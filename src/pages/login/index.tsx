@@ -8,7 +8,7 @@ import logoNoText from "../../assets/images/logo-no-text.svg";
 import authBanner from "../../assets/images/auth-banner.jpeg";
 import styles from "styles/Auth.module.scss";
 import { setGraphqlErrors } from "lib";
-import { useRouter } from "next/dist/client/router";
+import { useRouter } from "next/router";
 
 interface LoginFormData {
   username: string;
@@ -96,7 +96,12 @@ const Login: React.FC = () => {
 
         <div aria-label="Sign Up Link">
           <p>New to Scratch?</p>
-          <Button text="Sign Up!" style="text" href="/signup" />
+          <Button
+            aria-label="Link to Sign Up"
+            text="Sign Up!"
+            style="text"
+            href="/signup"
+          />
         </div>
       </section>
     </div>

@@ -8,6 +8,7 @@ export interface ButtonProps {
   href?: string;
   onClick?: () => void;
   type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
+  "aria-label"?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -16,12 +17,14 @@ const Button: React.FC<ButtonProps> = ({
   href,
   type = "button",
   onClick,
+  "aria-label": ariaLabel,
 }) => {
   const Btn = (
     <button
       onClick={onClick}
       className={[styles.btn, styles[`btn--${style}`]].join(" ")}
       type={type}
+      aria-label={ariaLabel}
     >
       {text}
     </button>

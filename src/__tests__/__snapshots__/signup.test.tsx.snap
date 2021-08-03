@@ -1,23 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Login Page should have a link to signup page 1`] = `
+exports[`Sign Up Page should have a link to login page 1`] = `
 <div
-  aria-label="Sign Up Link"
+  aria-label="Login Link"
 >
   <p>
-    New to Scratch?
+    Already have an account?
   </p>
   <button
-    aria-label="Link to Sign Up"
+    aria-label="Link to Login"
     class="btn btn--text"
     type="button"
   >
-    Sign Up!
+    Login!
   </button>
 </div>
 `;
 
-exports[`Login Page should have banner section 1`] = `
+exports[`Sign Up Page should have banner section 1`] = `
 <div
   aria-label="Banner"
   class="banner"
@@ -34,10 +34,18 @@ exports[`Login Page should have banner section 1`] = `
     />
   </div>
   <h1
-    aria-label="Banner Header"
-    class="banner__header"
+    aria-label="Banner Header 1"
+    class="banner__header-1"
   >
-    Welcome Back!
+    Start 
+    <br />
+     from Scratch!
+  </h1>
+  <h1
+    aria-label="Banner Header 2"
+    class="banner__header-2"
+  >
+    Start from Scratch!
   </h1>
   <div
     style="display: block; overflow: hidden; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; margin: 0px;"
@@ -53,9 +61,9 @@ exports[`Login Page should have banner section 1`] = `
 </div>
 `;
 
-exports[`Login Page should have login form 1`] = `
+exports[`Sign Up Page should have login form 1`] = `
 <form
-  aria-label="Login Form"
+  aria-label="Sign Up Form"
 >
   <div
     class="container"
@@ -68,7 +76,6 @@ exports[`Login Page should have login form 1`] = `
       >
         Username
       </label>
-      Forgot Password
     </div>
     <input
       aria-label="Username input"
@@ -78,6 +85,28 @@ exports[`Login Page should have login form 1`] = `
     />
     <p
       aria-label="Username error message"
+    />
+  </div>
+  <div
+    class="container"
+  >
+    <div
+      class="container__content"
+    >
+      <label
+        for="name"
+      >
+        Name
+      </label>
+    </div>
+    <input
+      aria-label="Name input"
+      name="name"
+      type="text"
+      value=""
+    />
+    <p
+      aria-label="Name error message"
     />
   </div>
   <div
@@ -102,20 +131,42 @@ exports[`Login Page should have login form 1`] = `
       aria-label="Password error message"
     />
   </div>
+  <div
+    class="container"
+  >
+    <div
+      class="container__content"
+    >
+      <label
+        for="confirm password"
+      >
+        Confirm Password
+      </label>
+    </div>
+    <input
+      aria-label="Confirm Password input"
+      name="confirm password"
+      type="password"
+      value=""
+    />
+    <p
+      aria-label="Confirm Password error message"
+    />
+  </div>
   <button
     class="btn btn--solid"
     type="submit"
   >
-    Login
+    Sign Up
   </button>
 </form>
 `;
 
-exports[`Login Page should show errors for submitting form with empty inputs 1`] = `
+exports[`Sign Up Page should show errors for submitting form with empty inputs 1`] = `
 <button
   class="btn btn--solid"
   type="submit"
 >
-  Login
+  Sign Up
 </button>
 `;
