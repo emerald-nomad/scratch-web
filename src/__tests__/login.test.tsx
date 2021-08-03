@@ -4,7 +4,7 @@
 
 import React from "react";
 import userEvent from "@testing-library/user-event";
-import Login, { LOGIN_USER } from "./index";
+import Login, { LOGIN_USER } from "pages/login";
 import { cleanup, render, screen, act, waitFor } from "lib";
 
 const testPassword = "12345";

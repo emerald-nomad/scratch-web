@@ -76,8 +76,6 @@ export interface NexusGenFieldTypes {
     signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
   }
   Query: { // field return type
-    goodbye: string | null; // String
-    hello: string | null; // String
     users: Array<NexusGenRootTypes['User'] | null>; // [User]!
   }
   User: { // field return type
@@ -98,8 +96,6 @@ export interface NexusGenFieldTypeNames {
     signup: 'AuthPayload'
   }
   Query: { // field return type name
-    goodbye: 'String'
-    hello: 'String'
     users: 'User'
   }
   User: { // field return type name

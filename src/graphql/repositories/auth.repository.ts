@@ -1,62 +1,61 @@
-import { Request } from 'express';
-import { verify } from 'jsonwebtoken';
-import { User } from 'graphql/db';
-import { APP_SECRET } from 'lib';
+import { Request } from "express";
+import { verify } from "jsonwebtoken";
+import { User } from "../db";
+import { APP_SECRET } from "../../lib/constants";
 
 export interface AuthRepository {
-    isAuthenticated: (req: Request) => Promise<boolean>
-    isDeveloper: (req: Request) => Promise<boolean>
+  isAuthenticated: (req: Request) => Promise<boolean>;
+  isDeveloper: (req: Request) => Promise<boolean>;
 }
-
 
 const getUser = async (
-    req: Request
+  req: Request
 ): Promise<{ userId: string; token: string }> => {
-    const { authorization } = req.headers
+  const { authorization } = req.headers;
 
-    if (!authorization) throw Error()
+  if (!authorization) throw Error();
 
-    const token = authorization!.replace('Bearer ', '')
+  const token = authorization!.replace("Bearer ", "");
 
-    try {
-        const { userId } = (await verify(token, APP_SECRET)) as { userId: string }
+  try {
+    const { userId } = (await verify(token, APP_SECRET)) as { userId: string };
 
-        return { userId, token }
-    } catch (error) {
-        throw Error()
-    }
-}
+    return { userId, token };
+  } catch (error) {
+    throw Error();
+  }
+};
 
 export const authRepository: AuthRepository = {
-    isAuthenticated: async (req) => {
-        const user = await getUser(req)
+  isAuthenticated: async (req) => {
+    const user = await getUser(req);
 
-        req.body = {
-            ...req.body,
-            ...user
-        }
+    req.body = {
+      ...req.body,
+      ...user,
+    };
 
-        return true
-    },
+    return true;
+  },
 
-    isDeveloper: async (req) => {
-        const { userId } = await getUser(req)
+  isDeveloper: async (req) => {
+    const { userId } = await getUser(req);
 
-        const user = await User.findById(userId)
+    const user = await User.findById(userId);
 
-        if (!user || user.role !== 'DEVELOPER') throw Error()
+    if (!user || user.role !== "DEVELOPER") throw Error();
 
-        req.body = {
-            ...req.body,
-            ...user
-        }
+    req.body = {
+      ...req.body,
+      ...user,
+    };
 
-        return true
-    }
-}
+    return true;
+  },
+};
 
 export const mockAuthRepository: AuthRepository = {
-    isAuthenticated: async () => false,
+  isAuthenticated: async () => false,
 
-    isDeveloper: async () => false
-}
+  isDeveloper: async () => false,
+};

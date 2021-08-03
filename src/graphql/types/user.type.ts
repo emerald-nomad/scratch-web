@@ -10,7 +10,7 @@ import {
   REMOVE_USER_ERROR_CODE,
   RemoveUserError,
 } from "../errors";
-import { APP_SECRET } from "lib";
+import { APP_SECRET } from "../../lib/constants";
 
 const createToken = async (userId: string) => {
   const token = await sign({ userId }, APP_SECRET);
