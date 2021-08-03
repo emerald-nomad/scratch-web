@@ -29,6 +29,7 @@
     margin-bottom: 0.5em;
 
     @include mq(lg) {
+      padding: 0;
       font-size: 0.75rem;
     }
   }

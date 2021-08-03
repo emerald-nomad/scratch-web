@@ -70,6 +70,7 @@ exports[`Login Page should have login form 1`] = `
       Forgot Password
     </div>
     <input
+      aria-label="Username input"
       name="username"
       type="text"
       value=""
@@ -91,8 +92,9 @@ exports[`Login Page should have login form 1`] = `
       </label>
     </div>
     <input
+      aria-label="Password input"
       name="password"
-      type="text"
+      type="password"
       value=""
     />
     <p

@@ -7,6 +7,8 @@ import logo from "../../assets/images/logo.svg";
 import logoNoText from "../../assets/images/logo-no-text.svg";
 import authBanner from "../../assets/images/auth-banner.jpeg";
 import styles from "styles/Auth.module.scss";
+import { setGraphqlErrors } from "lib";
+import { useRouter } from "next/dist/client/router";
 
 interface LoginFormData {
   username: string;
@@ -32,22 +34,27 @@ export const LOGIN_USER = gql`
 `;
 
 const Login: React.FC = () => {
-  const [loginUser, { loading, error }] = useMutation<{input: LoginFormData}>(LOGIN_USER);
+  const router = useRouter();
+
+  const [loginUser, { loading }] =
+    useMutation<{ input: LoginFormData }>(LOGIN_USER);
 
   const {
     control,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm<LoginFormData>({ resolver: yupResolver(LoginSchema) });
 
   const onSubmit = async (data: LoginFormData) => {
     try {
-      const res = await loginUser({variables: {input: data}, })
-      console.log(res);
+      const res = await loginUser({ variables: { input: data } });
+
+      router.push("/feed");
     } catch (error) {
-      console.log(error)
+      const { data } = error.graphQLErrors[0];
+      setGraphqlErrors({ errors: data, setError });
     }
-    
   };
 
   return (
@@ -80,6 +87,7 @@ const Login: React.FC = () => {
             label="Password"
             control={control}
             name="password"
+            type="password"
             error={errors.password?.message}
           />
 

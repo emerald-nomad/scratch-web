@@ -29,7 +29,12 @@ const Input: React.FC<InputProps> = ({
       <Controller
         {...inputProps}
         render={({ field }) => (
-          <input {...field} type={type} name={inputName} />
+          <input
+            {...field}
+            type={type}
+            name={inputName}
+            aria-label={`${label} input`}
+          />
         )}
       />
 
