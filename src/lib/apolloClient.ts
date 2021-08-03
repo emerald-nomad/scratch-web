@@ -7,7 +7,6 @@ import {
 } from "@apollo/client";
 import merge from "deepmerge";
 import isEqual from "lodash/isEqual";
-import { API_URL } from "lib";
 
 export const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
 
@@ -17,7 +16,10 @@ const createApolloClient = () =>
   new ApolloClient({
     ssrMode: typeof window === "undefined",
     link: new HttpLink({
-      uri: process.env.API_URL ?? "http://localhost:3000/api/graphql",
+      uri:
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:3000/api/graphql"
+          : "https://scratch.emeraldnomad.dev/api/graphql",
       credentials: "same-origin",
     }),
     cache: new InMemoryCache(),
