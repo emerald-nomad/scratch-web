@@ -1,14 +1,25 @@
+import { MockedProvider, MockedResponse } from "@apollo/client/testing";
 import { render, RenderOptions } from "@testing-library/react";
 import { JSXElementConstructor, ReactElement } from "react";
 
-const Providers: React.FC = ({ children }) => {
-  return <> {children}</>;
-};
+export type MockResponse = MockedResponse<Record<string, any>>;
+interface Params {
+  options?: Omit<RenderOptions, "wrapper">;
+  mocks?: MockResponse[];
+}
 
 const customRender = (
   ui: ReactElement<any, string | JSXElementConstructor<any>>,
-  options: Omit<RenderOptions, "wrapper"> = {}
-) => render(ui, { wrapper: Providers, ...options });
+  params?: Params
+) => {
+  const Wrapper: React.FC = ({ children }) => {
+    return (
+      <MockedProvider mocks={params?.mocks ?? []}>{children}</MockedProvider>
+    );
+  };
+
+  return render(ui, { wrapper: Wrapper, ...(params?.options ?? {}) });
+};
 
 export * from "@testing-library/react";
 

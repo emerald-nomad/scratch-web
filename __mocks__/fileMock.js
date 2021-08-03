@@ -1,1 +1,1 @@
-imodule.exports = "/image-src-stub";
+module.exports = "/image-src-stub";
