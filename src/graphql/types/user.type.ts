@@ -9,7 +9,7 @@ import {
   ServerError,
   REMOVE_USER_ERROR_CODE,
   RemoveUserError,
-} from "graphql/errors";
+} from "../errors";
 import { APP_SECRET } from "lib";
 
 const createToken = async (userId: string) => {
