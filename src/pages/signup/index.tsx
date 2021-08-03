@@ -1,44 +1,77 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useMutation, gql } from "@apollo/client";
+import { useRouter } from "next/router";
 import { Button, Input, ScratchImage } from "components";
 import logo from "../../assets/images/logo.svg";
 import logoNoText from "../../assets/images/logo-no-text.svg";
 import authBanner from "../../assets/images/auth-banner.jpeg";
 import styles from "styles/Auth.module.scss";
+import { setGraphqlErrors } from "lib";
 
 interface SignUpFormData {
   username: string;
+  name: string;
   password: string;
   confirmPassword: string;
 }
 
 const SignUpSchema = yup.object().shape({
   username: yup.string().required("Username is required"),
+  name: yup.string().required("Name is required"),
   password: yup.string().required("Password is required"),
   confirmPassword: yup.string().required("Confirm password is required"),
 });
 
+export const SIGN_UP_USER = gql`
+  mutation SignUp($input: SignUpInput!) {
+    signup(input: $input) {
+      token
+      user {
+        id
+        name
+        username
+      }
+    }
+  }
+`;
+
 const SignUp: React.FC = () => {
+  const router = useRouter();
+
+  const [signUpUser, { loading }] =
+    useMutation<{ input: SignUpFormData }>(SIGN_UP_USER);
+
   const {
     control,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm<SignUpFormData>({ resolver: yupResolver(SignUpSchema) });
 
-  const onSubmit = (data: SignUpFormData) => {
-    console.log(data);
+  const onSubmit = async (data: SignUpFormData) => {
+    try {
+      const res = await signUpUser({ variables: { input: data } });
+
+      router.push("/feed");
+    } catch (error) {
+      const { data } = error.graphQLErrors[0];
+      setGraphqlErrors({ errors: data, setError });
+    }
   };
 
   return (
     <div className={styles.container}>
-      <div className={styles.banner}>
+      <div aria-label="Banner" className={styles.banner}>
         <ScratchImage src={logo} alt="Logo" />
-        <h1 className={styles["banner__header-1"]}>
+        <h1 aria-label="Banner Header 1" className={styles["banner__header-1"]}>
           Start <br /> from Scratch!
         </h1>
-        <h1 className={styles["banner__header-2"]}>Start from Scratch!</h1>
-        <ScratchImage src={authBanner} alt="" />
+        <h1 aria-label="Banner Header 2" className={styles["banner__header-2"]}>
+          Start from Scratch!
+        </h1>
+        <ScratchImage src={authBanner} alt="Banner Image" />
       </div>
 
       <section className={styles["content"]}>
@@ -48,12 +81,19 @@ const SignUp: React.FC = () => {
         </div>
         <h1 className={styles["content__heading"]}>Start from Scratch</h1>
         <span className={styles["message"]}>Create account to continue.</span>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form aria-label="Sign Up Form" onSubmit={handleSubmit(onSubmit)}>
           <Input
             label="Username"
             control={control}
             name="username"
             error={errors.username?.message}
+          />
+
+          <Input
+            label="Name"
+            control={control}
+            name="name"
+            error={errors.name?.message}
           />
 
           <Input
@@ -75,9 +115,14 @@ const SignUp: React.FC = () => {
           <Button text="Sign Up" type="submit" />
         </form>
 
-        <div>
+        <div aria-label="Login Link">
           <p>Already have an account?</p>
-          <Button text="Login!" style="text" href="/login" />
+          <Button
+            aria-label="Link to Login"
+            text="Login!"
+            style="text"
+            href="/login"
+          />
         </div>
       </section>
     </div>
