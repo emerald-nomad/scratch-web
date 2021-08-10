@@ -8,7 +8,7 @@ import logo from "../../assets/images/logo.svg";
 import logoNoText from "../../assets/images/logo-no-text.svg";
 import authBanner from "../../assets/images/auth-banner.jpeg";
 import styles from "styles/Auth.module.scss";
-import { setGraphqlErrors } from "lib";
+import { setGraphqlErrors, SIGN_UP_USER } from "lib";
 
 interface SignUpFormData {
   username: string;
@@ -23,19 +23,6 @@ const SignUpSchema = yup.object().shape({
   password: yup.string().required("Password is required"),
   confirmPassword: yup.string().required("Confirm password is required"),
 });
-
-export const SIGN_UP_USER = gql`
-  mutation SignUp($input: SignUpInput!) {
-    signup(input: $input) {
-      token
-      user {
-        id
-        name
-        username
-      }
-    }
-  }
-`;
 
 const SignUp: React.FC = () => {
   const router = useRouter();

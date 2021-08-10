@@ -7,7 +7,7 @@ import logo from "../../assets/images/logo.svg";
 import logoNoText from "../../assets/images/logo-no-text.svg";
 import authBanner from "../../assets/images/auth-banner.jpeg";
 import styles from "styles/Auth.module.scss";
-import { setGraphqlErrors } from "lib";
+import { LOGIN_USER, setGraphqlErrors } from "lib";
 import { useRouter } from "next/router";
 
 interface LoginFormData {
@@ -19,19 +19,6 @@ const LoginSchema = yup.object().shape({
   username: yup.string().required("Username is required"),
   password: yup.string().required("Password is required"),
 });
-
-export const LOGIN_USER = gql`
-  mutation Login($input: LoginInput!) {
-    login(input: $input) {
-      token
-      user {
-        id
-        name
-        username
-      }
-    }
-  }
-`;
 
 const Login: React.FC = () => {
   const router = useRouter();
