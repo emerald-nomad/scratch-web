@@ -124,9 +124,7 @@ export const UserMutaion = extendType({
 
           return { user, token };
         } catch (error) {
-          const { code } = error.extensions;
-
-          if (code === SIGNUP_ERROR_CODE) {
+          if (error.extensions?.code === SIGNUP_ERROR_CODE) {
             throw error;
           } else {
             console.error(error);
@@ -166,9 +164,7 @@ export const UserMutaion = extendType({
             user,
           };
         } catch (error) {
-          const { code } = error.extensions;
-
-          if (code === LOGIN_ERROR_CODE) {
+          if (error.extensions?.code === LOGIN_ERROR_CODE) {
             throw error;
           } else {
             console.error(error);

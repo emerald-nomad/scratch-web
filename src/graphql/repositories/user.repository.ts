@@ -1,4 +1,3 @@
-import { compare, hash } from "bcryptjs";
 import { IUser, User } from "../db";
 
 export interface UserRepository {
@@ -21,4 +20,22 @@ export const userRepository: UserRepository = {
     await User.create({ name, username, password }),
 
   delete: async (username) => !!(await User.deleteOne({ username })).ok,
+};
+
+const mockUser = {
+  id: "1",
+  name: "Mock User",
+  username: "mockuser",
+  password: "12345",
+  role: "DEVELOPER",
+} as IUser;
+
+export const mockUserRepository: UserRepository = {
+  findAll: async () => [mockUser],
+
+  findByUsername: async () => mockUser,
+
+  create: async () => mockUser,
+
+  delete: async () => true,
 };

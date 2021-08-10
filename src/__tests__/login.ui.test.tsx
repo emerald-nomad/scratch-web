@@ -4,8 +4,8 @@
 
 import React from "react";
 import userEvent from "@testing-library/user-event";
-import Login, { LOGIN_USER } from "pages/login";
-import { cleanup, render, screen, act, waitFor, within } from "lib";
+import Login from "pages/login";
+import { cleanup, render, screen, act, waitFor, within, LOGIN_USER } from "lib";
 
 const testPassword = "12345";
 const failingUsername = "Error";

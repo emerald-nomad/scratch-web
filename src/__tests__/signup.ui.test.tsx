@@ -4,8 +4,16 @@
 
 import React from "react";
 import userEvent from "@testing-library/user-event";
-import SignUp, { SIGN_UP_USER } from "pages/signup";
-import { cleanup, render, screen, act, waitFor, within } from "lib";
+import SignUp from "pages/signup";
+import {
+  cleanup,
+  render,
+  screen,
+  act,
+  waitFor,
+  within,
+  SIGN_UP_USER,
+} from "lib";
 
 const usernameExists = "Username Exists";
 const nonMatchingPasswords = "Non matching password";
