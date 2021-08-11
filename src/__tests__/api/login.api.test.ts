@@ -1,4 +1,5 @@
-import { createTestContext, LOGIN_USER } from "lib";
+import { LOGIN_USER } from "lib";
+import { createTestContext } from "lib/test-utils.api";
 
 const ctx = createTestContext();
 
