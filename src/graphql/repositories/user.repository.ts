@@ -22,7 +22,7 @@ export const userRepository: UserRepository = {
   delete: async (username) => !!(await User.deleteOne({ username })).ok,
 };
 
-const mockUser = {
+export const mockUser = {
   id: "1",
   name: "Mock User",
   username: "mockuser",

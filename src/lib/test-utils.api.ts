@@ -8,27 +8,34 @@ import { AuthorizationError } from "graphql/errors";
 import { join } from "path";
 import { mockAuthRepository, mockUserRepository } from "graphql/repositories";
 
-const testServer = new ApolloServer({
-  schema: makeSchema({
-    types,
-    plugins: [
-      fieldAuthorizePlugin({ formatError: () => AuthorizationError() }),
-    ],
-    contextType: {
-      module: join(process.cwd(), "src", "graphql", "./context.ts"),
-      export: "Context",
+const createTestServer = () =>
+  new ApolloServer({
+    schema: makeSchema({
+      types,
+      plugins: [
+        fieldAuthorizePlugin({ formatError: () => AuthorizationError() }),
+      ],
+      contextType: {
+        module: join(process.cwd(), "src", "graphql", "./context.ts"),
+        export: "Context",
+      },
+      outputs: {
+        typegen: join(process.cwd(), "generated/nexus-typegen.ts"),
+        schema: join(process.cwd(), "generated/schema.graphql"),
+      },
+    }),
+    context: (ctx: any) => ({
+      ...ctx,
+      Auth: mockAuthRepository,
+      User: mockUserRepository,
+    }),
+    formatError: (err) => {
+      // @ts-ignore
+      const { code, exception, ...data } = err.extensions;
+
+      return { message: err.message, code, data };
     },
-    outputs: {
-      typegen: join(process.cwd(), "generated/nexus-typegen.ts"),
-      schema: join(process.cwd(), "generated/schema.graphql"),
-    },
-  }),
-  context: (ctx: any) => ({
-    ...ctx,
-    Auth: mockAuthRepository,
-    User: mockUserRepository,
-  }),
-});
+  });
 
 type TestContext = {
   client: GraphQLClient;
@@ -59,7 +66,7 @@ function graphqlTestContext() {
     async before() {
       const port = await getPort({ port: makeRange(4000, 6000) });
 
-      serverInstance = await testServer.listen({ port });
+      serverInstance = await createTestServer().listen({ port });
 
       console.log;
 
