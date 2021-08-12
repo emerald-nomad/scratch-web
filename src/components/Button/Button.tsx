@@ -1,3 +1,4 @@
+import { LoadingIndicator } from "components/LoadingIndicator";
 import Link from "next/link";
 import { ButtonHTMLAttributes } from "react";
 import styles from "./Button.module.scss";
@@ -9,6 +10,7 @@ export interface ButtonProps {
   onClick?: () => void;
   type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
   "aria-label"?: string;
+  loading?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -18,6 +20,7 @@ const Button: React.FC<ButtonProps> = ({
   type = "button",
   onClick,
   "aria-label": ariaLabel,
+  loading = false,
 }) => {
   const Btn = (
     <button
@@ -26,7 +29,7 @@ const Button: React.FC<ButtonProps> = ({
       type={type}
       aria-label={ariaLabel}
     >
-      {text}
+      {loading ? <LoadingIndicator /> : text}
     </button>
   );
 

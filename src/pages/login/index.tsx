@@ -78,7 +78,7 @@ const Login: React.FC = () => {
             error={errors.password?.message}
           />
 
-          <Button text="Login" type="submit" />
+          <Button text="Login" type="submit" loading={loading} />
         </form>
 
         <div aria-label="Sign Up Link">

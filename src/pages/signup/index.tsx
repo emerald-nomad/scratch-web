@@ -99,7 +99,7 @@ const SignUp: React.FC = () => {
             type="password"
           />
 
-          <Button text="Sign Up" type="submit" />
+          <Button text="Sign Up" type="submit" loading={loading} />
         </form>
 
         <div aria-label="Login Link">
