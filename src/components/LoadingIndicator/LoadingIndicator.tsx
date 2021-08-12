@@ -9,6 +9,7 @@ const LoadingIndicator: React.FC<LoadingIndicatorProps> = ({
 }) => {
   return (
     <div
+      aria-label="Loading Indicator"
       className={[styles["lds-ring"], styles[`lds-ring--${color}`]].join(" ")}
     >
       <div></div>

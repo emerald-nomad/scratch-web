@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Component should have a 'btn--outline' class 1`] = `
+<button
+  class="btn btn--outline"
+  type="button"
+>
+  Btn
+</button>
+`;
+
+exports[`Button Component should have a 'btn--solid' class 1`] = `
+<button
+  class="btn btn--solid"
+  type="button"
+>
+  Btn
+</button>
+`;
+
+exports[`Button Component should have a 'btn--text' class 1`] = `
+<button
+  class="btn btn--text"
+  type="button"
+>
+  Btn
+</button>
+`;
+
+exports[`Button Component should have the text 'Btn' 1`] = `
+<button
+  class="btn btn--solid"
+  type="button"
+>
+  Btn
+</button>
+`;
+
+exports[`Button Component should show the loading indicator instead of text while loading 1`] = `
+<button
+  class="btn btn--solid"
+  type="button"
+>
+  <div
+    aria-label="Loading Indicator"
+    class="lds-ring lds-ring--white"
+  >
+    <div />
+    <div />
+    <div />
+    <div />
+  </div>
+</button>
+`;
