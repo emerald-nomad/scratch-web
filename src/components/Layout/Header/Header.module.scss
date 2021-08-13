@@ -1,0 +1,9 @@
+.header {
+  display: flex;
+  justify-content: center;
+  padding: 1em 2em;
+
+  & > div:first-child {
+    margin-right: auto !important;
+  }
+}

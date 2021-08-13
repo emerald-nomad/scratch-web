@@ -7,7 +7,7 @@ import { Button, ButtonContainer } from "components";
 export default function Home() {
   return (
     <div className={styles["container"]}>
-      <Image src={logo} />
+      <Image src={logo} alt="Logo" />
 
       <div className={styles["container__content"]}>
         <h1 className={styles.heading}>
