@@ -12,20 +12,26 @@ const Footer: React.FC = () => {
   const { pathname } = useRouter();
   return (
     <footer className={styles.footer}>
-      <Link href="/">
-        <ScratchImage
-          src={pathname === "/search" ? nav1Green : nav1Black}
-          alt="Nav 1"
-        />
+      <Link href="/search">
+        <a>
+          <ScratchImage
+            src={pathname === "/search" ? nav1Green : nav1Black}
+            alt="Nav 1"
+          />
+        </a>
       </Link>
       <Link href="/feed">
-        <ScratchImage
-          src={pathname === "/feed" ? nav2Green : nav2Black}
-          alt="Nav 2"
-        />
+        <a>
+          <ScratchImage
+            src={pathname === "/feed" ? nav2Green : nav2Black}
+            alt="Nav 2"
+          />
+        </a>
       </Link>
       <Link href="/">
-        <ScratchImage src={nav3} alt="Nav 3" />
+        <a>
+          <ScratchImage src={nav3} alt="Nav 3" />
+        </a>
       </Link>
     </footer>
   );
