@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icon / Green / Edit - Color</title>
+    <g id="Icon-/-Green-/-Edit---Color" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10,3.87867966 L10,3.87867966 L10,3.87867966 L10,19.4350288 L12.1213203,21.5563492 L14.2426407,19.4350288 L14.2426407,3.87867966 C13.0710678,2.70710678 11.1715729,2.70710678 10,3.87867966 Z" id="Line" stroke="#30BE76" transform="translate(12.121320, 12.278175) rotate(45.000000) translate(-12.121320, -12.278175) "></path>
+        <path d="M15.2480357,6.49757074 C16.0414486,6.63513552 16.6774071,6.9431699 17.155911,7.42167387 C17.634415,7.90017785 17.9721986,8.48244264 18.1692618,9.16846824" id="Line-2" stroke="#30BE76"></path>
+    </g>
+</svg>

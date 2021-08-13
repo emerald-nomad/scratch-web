@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icon / White / Full Screen - Exit</title>
+    <g id="Icon-/-White-/-Full-Screen---Exit" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <polyline id="Line" stroke="#FFFFFF" points="5 9 9 9 9 5"></polyline>
+        <polyline id="Line-Copy-2" stroke="#FFFFFF" points="9 19 9 15 5 15"></polyline>
+        <polyline id="Line-Copy" stroke="#FFFFFF" points="15 5 15 9 19 9"></polyline>
+        <polyline id="Line-Copy-3" stroke="#FFFFFF" points="19 15.019267 15 15 15 19"></polyline>
+    </g>
+</svg>

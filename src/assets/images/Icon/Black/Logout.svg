@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icon / Black / Logout</title>
+    <g id="Icon-/-Black-/-Logout" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <polyline id="Line" stroke="#363837" points="12 16 12 19 5 19 5 5 12 5 12 8"></polyline>
+        <path d="M17,12 L9,12 L17,12 Z" id="Line" stroke="#363837"></path>
+        <polyline id="Line" stroke="#363837" points="16 9 18 12 16 15"></polyline>
+    </g>
+</svg>
